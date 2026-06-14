@@ -1,0 +1,35 @@
+name: ML Training CI
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:  # Untuk trigger manual
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12.7'
+    
+    - name: Install dependencies
+      run: |
+        pip install mlflow==2.19.0 scikit-learn pandas numpy
+    
+    - name: Run MLflow Project
+      working-directory: MLProject
+      run: |
+        python modelling.py
+    
+    - name: Upload model artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: ml-model-artifacts
+        path: MLProject/mlruns/
+        
