@@ -2,7 +2,7 @@ name: ML Training CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, master]
   workflow_dispatch:  # Untuk trigger manual
 
 jobs:

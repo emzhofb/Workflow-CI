@@ -24,7 +24,7 @@ def train_model():
   """Melatih model dengan MLflow autolog."""
 
   X_train, X_test, y_train, y_test = load_preprocessed_data(
-    "../../dataset_preprocessing"
+    "../dataset_preprocessing"
   )
 
   mlflow.set_experiment("MSML-CI-Experiment")
