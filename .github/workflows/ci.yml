@@ -32,4 +32,11 @@ jobs:
       with:
         name: ml-model-artifacts
         path: MLProject/mlruns/
-        
+    
+    - name: Commit and push model artifacts
+    run: |
+      git config --local user.email "action@github.com"
+      git config --local user.name "GitHub Action"
+      git add MLProject/mlruns/ || true
+      git diff --staged --quiet || git commit -m "chore: update model artifacts"
+      git push || true
